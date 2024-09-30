@@ -1,46 +1,53 @@
-# Getting Started with Create React App
+# 프리온보딩 FE 챌린지 10월 (2024) - 탁민주 | 리액트 오픈소스 펼쳐보기
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 실행방법
 
-## Available Scripts
+```
+yarn install
+yarn start
+```
 
-In the project directory, you can run:
+## 프로젝트 구현 화면
 
-### `npm start`
+## 프로젝트 설명
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. App.tsx에서 <ProductList> 컴포넌트 호출합니다.
+2. <ProductList> 컴포넌트는 총 3가지 영역을 존재합니다.
+   - Header: 제목
+   - Content : 상품 리스트 (무한 스크롤 구현 영역)
+   - Footer : 총 상품 개수, 총 금액
+3. 비즈니스 로직의 경우에는 useProductList.tsx에서 기입합니다.
+   - 기본적으로 Loading 표시는 항상 존재합니다. (API 호출전에 API 종료후에 loading 상태를 변경하는 것이 일반적이나 과제인 점과 디자인상 데이터를 호출시 Loading 표시가 보일 수 없다는 점을 가정하여 단순하게 제작하였습니다.)
+   - 따라서, Loading 표시가 호출된다는 것은 페이지 스크롤에 맨 마지막으로 간주합니다.
+   - API 호출은 단순하게 page가 변경된 경우에만 호출합니다.
+   - isEnd가 true가 되는 순간, 옵져버의 구독을 취소하고, Loading 데이터를 제거합니다.
+   - total 정보의 경우에는 data가 업데이트 되는 경우에만, 계산하여 돔을 그립니다.
+4. Content 영역의 경우 <ProductItem> 을 렌더링하고, 이 경우에 key 값에 index가 아닌 해당 데이터의 유니크한 ID를 넘기도록 합니다.
+5. ProductItem의 경우에는 props가 변경되지 않는 이상, 다시 렌더링 되지 않도록 컴포넌트를 메모리제이션 합니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 챌린지 과제 제출 방법
 
-### `npm test`
+> 과제를 진행한 repository의 링크를 Gist Comment에 남겨주세요.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 챌린지 과제 내용
 
-### `npm run build`
+1. 하나의 SinglePage에 Intersection Observer를 이용해 무한스크롤을 구현하세요.
+2. 현재 가져온 상품 리스트들의 액수들의 합계를 화면에 보여주세요 (ex. 현재 20개의 상품을 가져온 상태라면 20개 물품의 가격 총 합을 보여주면 됨)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 무한 스크롤의 조건
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. 페이지를 현재 보여주는 페이지의 최하단으로 이동 시 다음 페이지 정보를 가져오게 합니다.
+2. 더이상 가져올 수 없는 상황이라면 더 이상 데이터를 가져오는 함수를 호출하지 않습니다.
+3. 로딩 시 로딩 UI가 보여아 합니다. (UI의 형식은 자유)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 과제 유의 사항
 
-### `npm run eject`
+1. React + 함수형 컴포넌트를 사용해서 개발해주세요
+2. 제공해드린 Mock 데이터는 수정 및 추가가 가능합니다.
+3. 무한스크롤 관련된 라이브러리 사용 절대 금지
+4. 비동기 상태 관리 라이브러리 사용 절대 금지 (ex. tanstack-query)
+5. 3, 4번 조건 외의 라이브러리는 자유롭게 사용하셔도 됩니다
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 첨부 코드
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+구현에만 집중할 수 있도록 mock 데이터와 호출용 promise 함수를 제공해 드리니 아래를 사용하시길 바랍니다.

@@ -1,0 +1,10 @@
+.product-item {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  padding: 15px;
+}
+
+.product-item + .product-item {
+  margin-top: 40px;
+}

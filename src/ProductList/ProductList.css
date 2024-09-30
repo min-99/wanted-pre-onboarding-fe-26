@@ -1,0 +1,14 @@
+.product-list {
+  padding: 50px;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-list .product-list__content {
+  height: 100%;
+  overflow-y: auto;
+}
