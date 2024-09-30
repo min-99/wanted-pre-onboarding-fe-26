@@ -8,6 +8,8 @@ yarn start
 ```
 
 ## 프로젝트 구현 화면
+![ezgif com-resize](https://github.com/user-attachments/assets/12123bfa-28da-4a31-a574-3f07622b8c23)
+
 
 ## 프로젝트 설명
 
